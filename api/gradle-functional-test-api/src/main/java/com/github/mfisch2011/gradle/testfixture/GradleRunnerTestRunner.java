@@ -22,9 +22,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-
-import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.UnexpectedBuildFailure;
 import org.junit.Ignore;
@@ -32,6 +29,8 @@ import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
+
+import com.github.mfisch2011.gradle.testfixture.internal.DefaultBuildResult;
 
 /**
  * TODO:documentation...
@@ -155,7 +154,7 @@ public class GradleRunnerTestRunner extends Runner {
 		URL url = testClass.getResource("/plugin-under-test-metadata.properties");
 		if(url!=null)
 			runner.withPluginClasspath();
-		return runner.build();
+		return new DefaultBuildResult(dir,runner.build());
 	}
 	
 	/**
