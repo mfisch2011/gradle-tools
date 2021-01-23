@@ -1,0 +1,12 @@
+/**
+ * TODO:licensing...
+ */
+plugins {
+	id "java"
+	id "application"
+}
+
+task testBuild {
+	println "PROPERTY: " + testProperty1
+	println "PROJECT NAME: " + rootProject.name
+}
