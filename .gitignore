@@ -31,3 +31,6 @@ build/
 bin/
 .classpath
 .project
+
+# do not ignore jar files...
+!*.jar

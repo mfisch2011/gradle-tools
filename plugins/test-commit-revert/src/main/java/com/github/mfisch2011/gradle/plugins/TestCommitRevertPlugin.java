@@ -17,6 +17,10 @@ package com.github.mfisch2011.gradle.plugins;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.Task;
+import org.gradle.api.tasks.testing.Test;
+
+import groovy.lang.Closure;
 
 /**
  * TODO:documentation...
@@ -25,8 +29,38 @@ public class TestCommitRevertPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		// TODO Auto-generated method stub
-		
+		createExtension(project);		
+		//TODO:should this be after evaluation?
+		addCommitRevertClosure(project);
 	}
 
+	/**
+	 * TODO:documentation...
+	 * @param project
+	 */
+	protected void addCommitRevertClosure(Project project) {
+		for(Task task : project.getTasks()) {
+			if(task instanceof Test) {
+				Test test = (Test)task;
+				test.afterSuite(commitRevert(test));
+			}
+		}
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @param test
+	 * @return
+	 */
+	protected Closure<Void> commitRevert(Test test) {
+		return new CommitRevertClosure(test);
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @param project
+	 */
+	protected void createExtension(Project project) {
+		TestCommitRevertExtension.configure(project);
+	}
 }
