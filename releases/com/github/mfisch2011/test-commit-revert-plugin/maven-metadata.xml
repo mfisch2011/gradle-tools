@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.github.mfisch2011.gradle.plugins.TestCommitRevertPlugin</groupId>
-  <artifactId>com.github.mfisch2011.gradle.plugins.TestCommitRevertPlugin.gradle.plugin</artifactId>
+  <groupId>com.github.mfisch2011</groupId>
+  <artifactId>test-commit-revert-plugin</artifactId>
   <versioning>
     <latest>0.0.0.7</latest>
     <release>0.0.0.7</release>
