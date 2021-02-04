@@ -110,9 +110,9 @@ public class GradleRunnerTestRunner extends Runner {
 			cleanup();
 			notifier.fireTestFinished(description);
 		} catch(UnexpectedBuildFailure e) { 
-			printBuildInfo("build.gradle","BUILD:");
-			printBuildInfo("settings.gradle","SETTINGS:");
-			printBuildInfo("gradle.properties","PROPERTIES:");
+			//printBuildInfo("build.gradle","BUILD:");
+			//printBuildInfo("settings.gradle","SETTINGS:");
+			//printBuildInfo("gradle.properties","PROPERTIES:");
 			//TODO:how to attache build scripts and properties to e or description...
 			Failure failure = new Failure(description, e);
 			notifier.fireTestFailure(failure);
@@ -257,7 +257,6 @@ public class GradleRunnerTestRunner extends Runner {
 		} else {
 			if(!out.getParentFile().exists())
 				out.getParentFile().mkdirs();
-			System.out.printf("Copying %s to %s.%n", file,out);
 			Files.copy(file.toPath(),out.toPath());
 		}
 	}
