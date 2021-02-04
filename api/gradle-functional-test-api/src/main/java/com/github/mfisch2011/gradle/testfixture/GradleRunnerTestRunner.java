@@ -235,6 +235,8 @@ public class GradleRunnerTestRunner extends Runner {
 					for(File file : files)
 						copy(file,dest);
 				}
+			} else {
+				System.out.printf("WARNING protocol '%s' not handled.%n", url.getProtocol());
 			}
 			//TODO:how to handle jars???
 		} else {
@@ -255,6 +257,7 @@ public class GradleRunnerTestRunner extends Runner {
 		} else {
 			if(!out.getParentFile().exists())
 				out.getParentFile().mkdirs();
+			System.out.printf("Copying %s to %s.%n", file,out);
 			Files.copy(file.toPath(),out.toPath());
 		}
 	}
