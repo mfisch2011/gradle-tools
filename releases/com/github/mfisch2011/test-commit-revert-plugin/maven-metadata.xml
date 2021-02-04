@@ -3,12 +3,13 @@
   <groupId>com.github.mfisch2011</groupId>
   <artifactId>test-commit-revert-plugin</artifactId>
   <versioning>
-    <latest>0.0.0.10</latest>
-    <release>0.0.0.10</release>
+    <latest>0.0.0.11</latest>
+    <release>0.0.0.11</release>
     <versions>
       <version>0.0.0.7</version>
       <version>0.0.0.10</version>
+      <version>0.0.0.11</version>
     </versions>
-    <lastUpdated>20210204155304</lastUpdated>
+    <lastUpdated>20210204193129</lastUpdated>
   </versioning>
 </metadata>
