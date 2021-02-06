@@ -27,6 +27,7 @@ import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -34,6 +35,7 @@ import org.junit.rules.TemporaryFolder;
 /**
  * TODO:documentation...
  */
+@Ignore //TODO:how to test this??
 public class InstallDistributionPluginTest {
 	
 	@Rule

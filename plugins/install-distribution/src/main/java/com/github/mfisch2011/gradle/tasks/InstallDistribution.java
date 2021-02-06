@@ -55,6 +55,7 @@ public class InstallDistribution extends DefaultTask {
 				InstallDistribution.class);
 		task.setGroup("Application");
 		task.setDescription("Install application in Gradle binary directory");
+		task.dependsOn("distZip");
 		return task;
 	}
 
@@ -67,6 +68,7 @@ public class InstallDistribution extends DefaultTask {
 	public void install() throws ZipException, IOException {
 		File source = getSource();
 		Path dest = getDestination().toPath();
+		getLogger().info("Installing {} into {}",source,dest);
 		if(source!=null && source.exists()) {
 			ZipFile zip = new ZipFile(source);
 			Iterator<? extends ZipEntry> entries = zip.entries().asIterator();
@@ -104,8 +106,6 @@ public class InstallDistribution extends DefaultTask {
 		//remove directory
 		index = pathname.lastIndexOf('/');
 		pathname = pathname.substring(0,index);
-		
-		System.out.printf("LOCATION: %s%n",pathname);
 		return new File(pathname);
 	}
 	
