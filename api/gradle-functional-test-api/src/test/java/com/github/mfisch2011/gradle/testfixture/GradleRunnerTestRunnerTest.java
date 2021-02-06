@@ -17,12 +17,14 @@ package com.github.mfisch2011.gradle.testfixture;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.gradle.testkit.runner.BuildResult;
 
 /**
  * TODO:documentation...
  */
+@Ignore
 @RunWith(GradleRunnerTestRunner.class)
 public class GradleRunnerTestRunnerTest {
 

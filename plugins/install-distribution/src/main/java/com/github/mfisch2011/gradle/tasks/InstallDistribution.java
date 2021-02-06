@@ -1,0 +1,127 @@
+/**
+ * Copyright Feb 6, 2021 Matt Fischer <mfish2011@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.github.mfisch2011.gradle.tasks;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+import org.gradle.api.DefaultTask;
+import org.gradle.api.Project;
+import org.gradle.api.Task;
+import org.gradle.api.invocation.Gradle;
+import org.gradle.api.tasks.Internal;
+import org.gradle.api.tasks.TaskAction;
+import org.gradle.api.tasks.bundling.Zip;
+
+/**
+ * TODO:documentation...
+ */
+public class InstallDistribution extends DefaultTask {
+	
+	/**
+	 * TODO:documentation
+	 */
+	public static final String TASK_NAME = "installDistribution";
+	
+	/**
+	 * TODO:documentation...
+	 * @param project
+	 * @return
+	 */
+	public static InstallDistribution configure(Project project) {
+		InstallDistribution task = project.getTasks().create(TASK_NAME,
+				InstallDistribution.class);
+		task.setGroup("Application");
+		task.setDescription("Install application in Gradle binary directory");
+		return task;
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @throws IOException 
+	 * @throws ZipException 
+	 */
+	@TaskAction
+	public void install() throws ZipException, IOException {
+		File source = getSource();
+		Path dest = getDestination().toPath();
+		if(source!=null && source.exists()) {
+			ZipFile zip = new ZipFile(source);
+			Iterator<? extends ZipEntry> entries = zip.entries().asIterator();
+			while(entries.hasNext()) {
+				ZipEntry entry = entries.next();
+				InputStream stream = zip.getInputStream(entry);
+				Path filePath = dest.resolve(entry.getName());
+	            if (!entry.isDirectory()) {
+	                Files.copy(stream,filePath,StandardCopyOption.REPLACE_EXISTING);
+	            } else {
+	                // if the entry is a directory, make the directory
+	                File dir = filePath.toFile();
+	                dir.mkdirs();
+	            }
+	            stream.close();
+			}
+			zip.close();
+		}
+	}
+	
+	/**
+	 * TODO:documentation...
+	 * @return
+	 */
+	@Internal
+	protected File getDestination() {
+		URL url = Gradle.class.getProtectionDomain()
+				.getCodeSource().getLocation();
+		String pathname = url.getPath();
+		
+		//remove file
+		int index = pathname.lastIndexOf('/');
+		pathname = pathname.substring(0,index);
+		
+		//remove directory
+		index = pathname.lastIndexOf('/');
+		pathname = pathname.substring(0,index);
+		
+		System.out.printf("LOCATION: %s%n",pathname);
+		return new File(pathname);
+	}
+	
+	/**
+	 * TODO:documentation...
+	 * @return
+	 */
+	@Internal
+	protected File getSource() {
+		//TODO:must be a better way but getByName is puking...
+		for(Task task : getProject().getTasks()) {
+			if(task.getName().equals(":distZip")) {
+				Zip zip = (Zip)task;
+				return zip.getArchiveFile().get().getAsFile();
+			}
+		}
+		return null;		
+	}
+}

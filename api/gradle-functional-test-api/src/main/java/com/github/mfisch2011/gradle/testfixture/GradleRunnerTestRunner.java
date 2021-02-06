@@ -15,13 +15,19 @@
  */
 package com.github.mfisch2011.gradle.testfixture;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.UnexpectedBuildFailure;
 import org.junit.Ignore;
@@ -225,7 +231,10 @@ public class GradleRunnerTestRunner extends Runner {
 	 * @param dest
 	 */
 	protected void copyResources(String src,File dest) throws IOException {
-		//TODO:HOW TO FUCK TO DO THIS SINCE WE REALLY CANNOT ASSUME THAT build.gradle EXISTS!!!
+		String path = (src.startsWith("/")) ? src :
+			getClass().getPackageName().replace('.', '/') + "/" + src;
+		List<String> resources = getResourceFiles(path);
+		/*
 		URL url = testClass.getResource(src);
 		if(url!=null) {
 			if(url.getProtocol().equals("file")) {
@@ -242,6 +251,7 @@ public class GradleRunnerTestRunner extends Runner {
 		} else {
 			System.out.printf("MISSING RESOURCE: %s%n", src);
 		}
+		*/
 	}
 	
 	/**
@@ -260,13 +270,46 @@ public class GradleRunnerTestRunner extends Runner {
 			Files.copy(file.toPath(),out.toPath());
 		}
 	}
+	
+	/**
+	 * TODO:documentation...
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
+	protected List<String> getResourceFiles(String path) throws IOException {
+	    List<String> filenames = new ArrayList<>();
+
+	    try (
+	            InputStream in = getResourceAsStream(path);
+	            BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
+	        String resource;
+
+	        while ((resource = br.readLine()) != null) {
+	            filenames.add(resource);
+	        }
+	    }
+
+	    return filenames;
+	}
 
 	/**
 	 * TODO:documentation...
-	 * @param testObject
-	 * @param config
+	 * @param resource
+	 * @return
 	 */
-	protected void runBuild(Object testObject,GradleFunctionalTest config) {
-		//TODO:
+	protected InputStream getResourceAsStream(String resource) {
+	    final InputStream in
+	            = getContextClassLoader().getResourceAsStream(resource);
+
+	    return in == null ? getClass().getResourceAsStream(resource) : in;
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @return
+	 */
+	private ClassLoader getContextClassLoader() {
+	    return Thread.currentThread().getContextClassLoader();
 	}
 }
