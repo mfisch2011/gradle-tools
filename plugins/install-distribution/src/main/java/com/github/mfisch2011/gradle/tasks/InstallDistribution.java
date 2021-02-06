@@ -126,7 +126,6 @@ public class InstallDistribution extends DefaultTask {
 	protected File getSource() {
 		//TODO:must be a better way but getByName is puking...
 		for(Task task : getProject().getTasks()) {
-			System.out.println(task.getName());
 			if(task.getName().equals("distZip")) {
 				Zip zip = (Zip)task;
 				return zip.getArchiveFile().get().getAsFile();
