@@ -72,11 +72,13 @@ public class InstallDistribution extends DefaultTask {
 		if(source!=null && source.exists()) {
 			ZipFile zip = new ZipFile(source);
 			Iterator<? extends ZipEntry> entries = zip.entries().asIterator();
+			entries.next(); //throw away root dir...
 			while(entries.hasNext()) {
 				ZipEntry entry = entries.next();
 				InputStream stream = zip.getInputStream(entry);
 				Path filePath = dest.resolve(entry.getName());
 	            if (!entry.isDirectory()) {
+	            	getLogger().info("Copying {} to {}.",entry.getName(),filePath);
 	                Files.copy(stream,filePath,StandardCopyOption.REPLACE_EXISTING);
 	            } else {
 	                // if the entry is a directory, make the directory
