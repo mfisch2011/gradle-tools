@@ -1,0 +1,70 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.mfisch2011",
+    "module": "test-commit-revert-plugin",
+    "version": "0.0.0.19",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.3",
+      "buildId": "3seywc7fhrh77mvv6xjsw5xhyu"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "test-commit-revert-plugin-0.0.0.19.jar",
+          "url": "test-commit-revert-plugin-0.0.0.19.jar",
+          "size": 6753,
+          "sha512": "6639764f5688354edf47768384c1f7259f64cfa2ffcef1c3c16f1089294e4bb0fd8a74dea7d255378281b5375cb3d3f1acb1723438b31d49aff3ddae5fc7e2a6",
+          "sha256": "0005030443b2e1acdab0b6ee71785dbca18006111e0bc7659135353208a47a92",
+          "sha1": "62d68db2c55cf1813f4029690d48184d4e116f6a",
+          "md5": "269ab2ed4f5844c80e424094fa5a6298"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.eclipse.jgit",
+          "module": "org.eclipse.jgit",
+          "version": {
+            "requires": "5.10.0.202012080955-r"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "test-commit-revert-plugin-0.0.0.19.jar",
+          "url": "test-commit-revert-plugin-0.0.0.19.jar",
+          "size": 6753,
+          "sha512": "6639764f5688354edf47768384c1f7259f64cfa2ffcef1c3c16f1089294e4bb0fd8a74dea7d255378281b5375cb3d3f1acb1723438b31d49aff3ddae5fc7e2a6",
+          "sha256": "0005030443b2e1acdab0b6ee71785dbca18006111e0bc7659135353208a47a92",
+          "sha1": "62d68db2c55cf1813f4029690d48184d4e116f6a",
+          "md5": "269ab2ed4f5844c80e424094fa5a6298"
+        }
+      ]
+    }
+  ]
+}
