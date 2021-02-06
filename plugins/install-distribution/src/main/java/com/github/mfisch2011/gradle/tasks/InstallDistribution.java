@@ -76,7 +76,10 @@ public class InstallDistribution extends DefaultTask {
 			while(entries.hasNext()) {
 				ZipEntry entry = entries.next();
 				InputStream stream = zip.getInputStream(entry);
-				Path filePath = dest.resolve(entry.getName());
+				String filename = entry.getName();
+				int index = filename.indexOf('/');
+				filename = filename.substring(index+1);
+				Path filePath = dest.resolve(filename);
 	            if (!entry.isDirectory()) {
 	            	getLogger().info("Copying {} to {}.",entry.getName(),filePath);
 	                Files.copy(stream,filePath,StandardCopyOption.REPLACE_EXISTING);
