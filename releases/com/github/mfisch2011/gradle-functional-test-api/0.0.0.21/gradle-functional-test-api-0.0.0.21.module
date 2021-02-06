@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.mfisch2011",
+    "module": "gradle-functional-test-api",
+    "version": "0.0.0.21",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.3",
+      "buildId": "ldxun6k3pjc27oq4bztvouhu6e"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-functional-test-api-0.0.0.21.jar",
+          "url": "gradle-functional-test-api-0.0.0.21.jar",
+          "size": 7849,
+          "sha512": "dcc4fbb3cf67fadd8cfddf74ada3aa16771ba0a108920ade7f3a3dfc1c75dd138930f652cd0073ca0df869f33950f03a55f5f08ad136538c1b98c36b9857c380",
+          "sha256": "a26015e2ebed8ca853efe9f00d6e6ff4361a823296d1db38b06cc39058a04d01",
+          "sha1": "079294a2360487817781422bc5a697e7243b0b35",
+          "md5": "680dd7aa0bf9d57dd1cca1628825537a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-functional-test-api-0.0.0.21.jar",
+          "url": "gradle-functional-test-api-0.0.0.21.jar",
+          "size": 7849,
+          "sha512": "dcc4fbb3cf67fadd8cfddf74ada3aa16771ba0a108920ade7f3a3dfc1c75dd138930f652cd0073ca0df869f33950f03a55f5f08ad136538c1b98c36b9857c380",
+          "sha256": "a26015e2ebed8ca853efe9f00d6e6ff4361a823296d1db38b06cc39058a04d01",
+          "sha1": "079294a2360487817781422bc5a697e7243b0b35",
+          "md5": "680dd7aa0bf9d57dd1cca1628825537a"
+        }
+      ]
+    }
+  ]
+}
