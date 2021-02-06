@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.github.mfisch2011",
+    "module": "gradle-functional-test-api",
+    "version": "0.0.0.23",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.3",
+      "buildId": "xddtosme6bcqfiz6tx64hfxcm4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-functional-test-api-0.0.0.23.jar",
+          "url": "gradle-functional-test-api-0.0.0.23.jar",
+          "size": 7849,
+          "sha512": "1327f8b6b24afa35987a717a441086d3281365ebdfd32ca3a8e51ec2f0db2eeb3f13808a4dba706cd55f825c474ead32da6be21d1a4143880342e07fb12a13cc",
+          "sha256": "45359b9100aebd3bd0fbc23b8c7f59e395343cfab596a855f496a230ebd0820d",
+          "sha1": "162e2884d9b47c4793c9a5603f2b2f0dc80150e1",
+          "md5": "b4e82a713462d921111491bbf3ec6827"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 14,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gradle-functional-test-api-0.0.0.23.jar",
+          "url": "gradle-functional-test-api-0.0.0.23.jar",
+          "size": 7849,
+          "sha512": "1327f8b6b24afa35987a717a441086d3281365ebdfd32ca3a8e51ec2f0db2eeb3f13808a4dba706cd55f825c474ead32da6be21d1a4143880342e07fb12a13cc",
+          "sha256": "45359b9100aebd3bd0fbc23b8c7f59e395343cfab596a855f496a230ebd0820d",
+          "sha1": "162e2884d9b47c4793c9a5603f2b2f0dc80150e1",
+          "md5": "b4e82a713462d921111491bbf3ec6827"
+        }
+      ]
+    }
+  ]
+}
