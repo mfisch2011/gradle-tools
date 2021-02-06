@@ -81,8 +81,12 @@ public class InstallDistribution extends DefaultTask {
 				filename = filename.substring(index+1);
 				Path filePath = dest.resolve(filename);
 	            if (!entry.isDirectory()) {
-	            	getLogger().info("Copying {} to {}.",entry.getName(),filePath);
-	                Files.copy(stream,filePath,StandardCopyOption.REPLACE_EXISTING);
+	            	if(filePath.toFile().exists()) {
+	            		getLogger().info("Skipping {}.",filePath);
+	            	} else {
+		            	getLogger().info("Copying {} to {}.",entry.getName(),filePath);
+		                Files.copy(stream,filePath,StandardCopyOption.REPLACE_EXISTING);
+	            	}
 	            } else {
 	                // if the entry is a directory, make the directory
 	                File dir = filePath.toFile();
