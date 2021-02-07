@@ -82,7 +82,7 @@ public class TestCommitRevertClosure extends Closure<Void> {
 	 */
 	public void doCall(TestDescriptor desc,TestResult result) throws Exception {
 		if(desc.getParent()==null) {
-			Git git = Git.open(getProject().file(".git"));
+			Git git = Git.open(getProject().getRootProject().file(".git"));
 			if(result.getFailedTestCount()>0) {
 				getLogger().lifecycle("Reverting...");
 				git.checkout().setAllPaths(true).call();
