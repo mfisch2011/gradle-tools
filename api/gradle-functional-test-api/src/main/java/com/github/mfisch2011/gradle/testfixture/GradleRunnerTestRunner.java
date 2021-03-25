@@ -112,7 +112,7 @@ public class GradleRunnerTestRunner extends Runner {
 			notifier.fireTestStarted(description);
 			configure(annotation);
 			BuildResult result = build(annotation);
-			method.invoke(dut,result);
+			method.invoke(dut,result); //TODO:need to pass dir...
 			cleanup();
 			notifier.fireTestFinished(description);
 		} catch(UnexpectedBuildFailure e) { 
@@ -155,6 +155,7 @@ public class GradleRunnerTestRunner extends Runner {
 	 */
 	protected BuildResult build(GradleFunctionalTest annotation) {
 		GradleRunner runner = GradleRunner.create()
+				.withPluginClasspath()
 				.withProjectDir(dir)
 				.withArguments(annotation.args());
 		URL url = testClass.getResource("/plugin-under-test-metadata.properties");
