@@ -17,4 +17,3 @@ rootProject.name = "gradle-tools"
 
 include "api:gradle-functional-test-api"
 include "plugins:test-commit-revert-plugin"
-include "plugins:install-distribution"
