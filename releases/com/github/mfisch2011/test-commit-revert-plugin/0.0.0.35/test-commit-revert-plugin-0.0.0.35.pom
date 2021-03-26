@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.mfisch2011</groupId>
   <artifactId>test-commit-revert-plugin</artifactId>
-  <version>0.0.0.34</version>
+  <version>0.0.0.35</version>
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jgit</groupId>

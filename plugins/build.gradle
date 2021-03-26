@@ -15,7 +15,10 @@
 */
 subprojects {
 	apply plugin: "java-gradle-plugin"
-	
+
+	sourceCompatibility = "8"
+	targetCompatibility = "8"
+		
 	dependencies {
 		implementation gradleApi()
 		

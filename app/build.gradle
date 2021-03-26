@@ -18,6 +18,9 @@ subprojects {
 	apply plugin: "java"
 	apply plugin: "application"
 	
+	sourceCompatibility = "8"
+	targetCompatibility = "8"
+	
 	dependencies {
 		implementation "info.picocli:picocli:4.1.0"
 		
