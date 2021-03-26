@@ -21,8 +21,8 @@ subprojects {
 		
 	dependencies {
 		implementation gradleApi()
-		
 		testImplementation "junit:junit:4.13"
+		testImplementation gradleTestKit()
 	}
 	
 	publishing {
@@ -34,5 +34,28 @@ subprojects {
 				//TODO: verify everything works properly before removing this...   version    project.version
 			}
 		}
+	}
+	
+	// Add a source set for the functional test suite
+	sourceSets {
+    	functionalTest {
+    		compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+    		runtimeClasspath += output + compileClasspath
+   		}
+	}
+
+	gradlePlugin.testSourceSets(sourceSets.functionalTest)
+	configurations.functionalTestImplementation.extendsFrom(configurations.testImplementation)
+
+	// Add a task to run the functional tests
+	task functionalTest(type: Test) {
+    	testClassesDirs = sourceSets.functionalTest.output.classesDirs
+    	classpath = sourceSets.functionalTest.runtimeClasspath
+    	dependsOn(tasks.test)
+	}
+
+	check {
+    	// Run the functional tests as part of `check`
+    	dependsOn(tasks.functionalTest)
 	}
 }
