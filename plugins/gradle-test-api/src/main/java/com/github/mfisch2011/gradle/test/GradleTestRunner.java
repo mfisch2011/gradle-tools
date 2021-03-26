@@ -49,6 +49,7 @@ public class GradleTestRunner extends Runner {
 			for(Method method : testClass.getMethods()) {
 				GradleTest annotation = method.getAnnotation(GradleTest.class);
 				if(annotation!=null) {
+					fireTestStarted(notifier,method);
 					File dir = setup(annotation);
 					BuildResult result = build(dir,annotation);
 					//TODO:only pass result and dir if required
@@ -58,11 +59,32 @@ public class GradleTestRunner extends Runner {
 						//TODO:how to handle exceptions...
 					}
 					dir.delete(); //TODO:other cleanup?
+					fireTestFinished(notifier, method);
 				}
 			}
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @param notifier
+	 * @param method
+	 */
+	protected void fireTestFinished(RunNotifier notifier, Method method) {
+		notifier.fireTestFinished(Description.createTestDescription(
+				testClass, method.getName()));
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @param notifier
+	 * @param method
+	 */
+	protected void fireTestStarted(RunNotifier notifier, Method method) {
+		notifier.fireTestStarted(Description.createTestDescription(
+				testClass, method.getName()));
 	}
 
 	/**
