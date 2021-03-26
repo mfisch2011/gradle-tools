@@ -45,5 +45,5 @@ public @interface GradleTest {
 	 * TODO:documentation...
 	 * @return
 	 */
-	public String resources() default "";
+	//TODO:public String resources() default "";
 }
