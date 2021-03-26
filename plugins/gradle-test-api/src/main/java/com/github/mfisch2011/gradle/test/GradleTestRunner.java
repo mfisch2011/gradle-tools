@@ -14,6 +14,7 @@ import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.GradleRunner;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
+import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 
 /**
@@ -56,7 +57,8 @@ public class GradleTestRunner extends Runner {
 					try {
 						method.invoke(instance, result,dir);
 					} catch(Exception e) {
-						//TODO:how to handle exceptions...
+						e.printStackTrace(System.err);
+						fireTestFailure(notifier,method,e,annotation);
 					}
 					dir.delete(); //TODO:other cleanup?
 					fireTestFinished(notifier, method);
@@ -65,6 +67,20 @@ public class GradleTestRunner extends Runner {
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * TODO:documentation...
+	 * @param notifier
+	 * @param method
+	 * @param e
+	 */
+	protected void fireTestFailure(RunNotifier notifier, Method method, 
+	Exception e,GradleTest annotation) {
+		Description description = Description.createTestDescription("Test failed.",
+				method.getName(),annotation);
+		Failure failure = new Failure(description,e);
+		notifier.fireTestFailure(failure);
 	}
 
 	/**
