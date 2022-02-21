@@ -60,7 +60,10 @@ public class GradleTestRunner extends Runner {
 						e.printStackTrace(System.err);
 						fireTestFailure(notifier,method,e,annotation);
 					}
-					dir.delete(); //TODO:other cleanup?
+					 //TODO:other cleanup?
+					if(!dir.delete()) {
+						System.err.printf("Error removing temporary directory '%s'.%n",dir);
+					}
 					fireTestFinished(notifier, method);
 				}
 			}

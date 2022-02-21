@@ -15,8 +15,6 @@
  */
 package com.github.mfisch2011.gradle.plugins;
 
-import javax.inject.Inject;
-
 import org.gradle.api.Project;
 
 /**
@@ -38,21 +36,7 @@ public class TestCommitRevertExtension {
 		return project.getExtensions().create(PLUGIN_EXT,
 				TestCommitRevertExtension.class, project);
 	}
-	
-	/**
-	 * TODO:documentation
-	 */
-	protected final Project project;
-	
-	/**
-	 * TODO:documentation...
-	 * @param project
-	 */
-	@Inject
-	public TestCommitRevertExtension(Project project) {
-		this.project = project;
-	}
-	
+		
 	/**
 	 * TODO:documentation
 	 */
