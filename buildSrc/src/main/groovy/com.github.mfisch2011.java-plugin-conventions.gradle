@@ -14,14 +14,6 @@
    limitations under the License.
 */
 plugins {
-    id "groovy-gradle-plugin"
-}
-
-repositories {
-    gradlePluginPortal()
-}
-
-dependencies {
-    implementation "gradle.plugin.io.toolebox:gradle-git-versioner:1.6.7"
-    implementation "com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.6"
+    id "com.github.mfisch2011.java-common-conventions"
+    id "java-gradle-plugin"
 }

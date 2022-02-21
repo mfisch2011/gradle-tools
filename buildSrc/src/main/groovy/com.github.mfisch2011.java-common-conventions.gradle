@@ -15,7 +15,13 @@
 */
 plugins {
     id "java"
+    id "maven-publish"
+    id "io.toolebox.git-versioner"
+    id "jacoco"
+    id "com.github.spotbugs"
 }
+
+group = "com.github.mfisch2011"
 
 repositories {
     mavenCentral()
@@ -33,5 +39,18 @@ testing {
         test {
             useJUnitJupiter("5.8.1")
         }
+    }
+}
+
+publishing {
+    repositories {
+        maven { url = "${project.rootDir}/releases" }
+        mavenLocal();
+    }
+}
+
+tasks.withType(com.github.spotbugs.snom.SpotBugsTask).configureEach {
+    reports {
+        html.enabled = true
     }
 }

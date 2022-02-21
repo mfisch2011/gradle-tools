@@ -13,6 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+plugins {
+    id "com.github.mfisch2011.java-plugin-conventions"
+}
+
 dependencies { 
     implementation "junit:junit:4.13"
     implementation gradleTestKit()
@@ -22,8 +26,8 @@ gradlePlugin {
     // Define the plugin
     plugins {
         greeting {
-            id = 'com.github.mfisch2011.gradle.test.greeting'
-            implementationClass = 'com.github.mfisch2011.gradle.test.GradleTestApiPlugin'
+            id = "com.github.mfisch2011.gradle.test.greeting"
+            implementationClass = "com.github.mfisch2011.gradle.test.GradleTestApiPlugin"
         }
     }
 }
